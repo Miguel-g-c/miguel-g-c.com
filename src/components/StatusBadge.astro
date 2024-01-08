@@ -1,0 +1,27 @@
+<div class="inline-flex items-center self-start">
+  <span class="relative inline-block overflow-hidden rounded-full p-[1px]">
+    <span
+      class="absolute inset-[-1000%] animate-spin-slow bg-[conic-gradient(from_90deg_at_50%_50%,#171717_0%,#737373_50%,#171717_100%)]"
+    ></span>
+    <span
+      class="relative inline-flex size-full justify-center rounded-full bg-black px-4 py-1 text-xs"
+    >
+      <slot />
+    </span>
+  </span>
+</div>
+
+<style>
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+</style>
