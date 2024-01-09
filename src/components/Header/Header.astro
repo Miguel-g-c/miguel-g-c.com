@@ -2,13 +2,48 @@
 import HeaderLink from "./HeaderLink.astro";
 ---
 
-<header class="flex justify-between items-center p-4">
-  <nav class="px-1 mx-auto max-w-sm rounded-3xl z-100">
-    <ul class="flex flex-row justify-center items-center">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/about">About</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/projects">Projects</HeaderLink>
-    </ul>
+<header class="flex justify-between items-center p-4 sticky top-0 z-50">
+  <nav
+    class="flex flex-row justify-center items-center border border-black rounded-full bg-black/50 backdrop-blur-xl px-4 mx-auto"
+  >
+    <HeaderLink id="about-link" href="#about">About</HeaderLink>
+    <HeaderLink id="experience-link" href="#experience">Experience</HeaderLink>
+    <HeaderLink id="projects-link" href="#projects">Projects</HeaderLink>
+    <HeaderLink id="contact-link" href="#about">Contact</HeaderLink>
   </nav>
 </header>
+
+<script>
+  const contactLink = document.getElementById("contact-link");
+  const aboutSection = document.getElementById("about");
+  const icons = document.querySelectorAll(".social-icon");
+
+  contactLink.addEventListener("click", () => {
+    const currentScrollPosition = window.scrollY;
+    const targetPosition =
+      aboutSection.getBoundingClientRect().top + currentScrollPosition;
+    const scrollDistance = Math.abs(currentScrollPosition - targetPosition);
+    const scrollTime = scrollDistance / 1.6;
+
+    setTimeout(() => {
+      let current = 0;
+
+      function animateIcon() {
+        if (current > 0) {
+          icons[current - 1].classList.remove("highlight-icon");
+        }
+
+        if (current >= icons.length) {
+          clearInterval(intervalId);
+          return;
+        }
+
+        icons[current].classList.add("highlight-icon");
+        current++;
+      }
+
+      animateIcon();
+      const intervalId = setInterval(animateIcon, 500);
+    }, scrollTime);
+  });
+</script>

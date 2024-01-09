@@ -10,51 +10,70 @@ const currentYear = new Date().getFullYear();
 const yearsOfExperience = currentYear - 2016;
 ---
 
-<section class="flex flex-col gap-3 items-center mx-auto mt-16">
-  <Avatar />
-  <nav class="flex flex-row gap-2">
-    <a
-      href="https://github.com/Miguel-g-c"
-      target="_blank"
-      aria-label="Visit my GitHub profile"
-    >
-      <GitHub class="size-8 hover:stroke-sky-300" />
-    </a>
-    <a
-      href="https://www.linkedin.com/in/miguel-garcia-casas-b0b683145/"
-      target="_blank"
-      aria-label="Connect with me on LinkedIn"
-    >
-      <LinkedIn class="size-8 hover:stroke-sky-300" />
-    </a>
-    <a
-      href="mailto:miguel.g.c.505@gmail.com"
-      target="_blank"
-      aria-label="Email me"
-    >
-      <Mail class="size-8 hover:stroke-sky-300" />
-    </a>
-  </nav>
-  <div class="flex flex-col gap-4 mt-12 mb-2 max-w-[75ch]">
-    <div class="flex flex-row gap-4">
-      <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl">
-        Hey, I'm Miguel
-      </h1>
-      <StatusBadge>Open for consulting</StatusBadge>
-    </div>
+<section id="about" data-section="about">
+  <div class="flex flex-col gap-3 items-center mx-auto mt-20 lg:mt-32">
+    <Avatar />
+    <nav class="flex flex-row gap-2">
+      <a
+        href="https://github.com/Miguel-g-c"
+        target="_blank"
+        aria-label="Visit my GitHub profile"
+      >
+        <GitHub class="social-icon size-8 transition hover:stroke-sky-300" />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/miguel-garcia-casas-b0b683145/"
+        target="_blank"
+        aria-label="Connect with me on LinkedIn"
+      >
+        <LinkedIn class="social-icon size-8 transition hover:stroke-sky-300" />
+      </a>
+      <a
+        href="mailto:miguel.g.c.505@gmail.com"
+        target="_blank"
+        aria-label="Email me"
+      >
+        <Mail class="social-icon size-8 transition hover:stroke-sky-300" />
+      </a>
+    </nav>
+    <div class="flex flex-col gap-4 mt-12 mb-2 max-w-[75ch]">
+      <div class="flex flex-row gap-4">
+        <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl">
+          Hey, I'm Miguel
+        </h1>
+        <StatusBadge>Open for consulting</StatusBadge>
+      </div>
 
-    <div class="space-y-2">
-      <h2 class="text-lg sm:text-xl text-gray-200">
-        Over {yearsOfExperience} years of experience.
-        <KeyWord>Sustainability Engineer</KeyWord> and <KeyWord>
-          Backend Developer.
-        </KeyWord> PhD in Industrial Technologies, specializing in <KeyWord>
-          Life Cycle Assessment (LCA)
-        </KeyWord> and <KeyWord>Carbon Footprint</KeyWord> accounting.
-        <span class="text-lg sm:text-xl text-sky-200">
-          I code with a commitment to a Sustainable Future.
-        </span>
-      </h2>
+      <div class="space-y-2">
+        <h2 class="text-lg sm:text-xl text-gray-200">
+          Over {yearsOfExperience} years of experience.
+          <KeyWord>Sustainability Engineer</KeyWord> and <KeyWord>
+            Backend Developer.
+          </KeyWord> PhD in Industrial Technologies, specializing in <KeyWord>
+            Life Cycle Assessment (LCA)
+          </KeyWord> and <KeyWord>Carbon Footprint</KeyWord> accounting.
+          <span class="text-lg sm:text-xl text-sky-200">
+            I code with a commitment to a Sustainable Future.
+          </span>
+        </h2>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes highlight {
+    0%,
+    100% {
+      stroke: currentColor;
+    }
+    20%,
+    80% {
+      stroke: rgb(125 211 252);
+    }
+  }
+
+  .highlight-icon {
+    animation: highlight 500ms ease-in-out;
+  }
+</style>
