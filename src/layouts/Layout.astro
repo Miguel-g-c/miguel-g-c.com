@@ -21,9 +21,11 @@ const { description, title } = Astro.props;
     <title>{title}</title>
   </head>
 
-  <body class="relative text-white selection:bg-sky-300 selection:text-black">
+  <body
+    class="relative bg-neutral-950 text-white selection:bg-sky-300 selection:text-black"
+  >
     <div
-      class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950
+      class="absolute top-0 z-[-2] h-screen w-screen
 	         bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
     </div>
@@ -34,7 +36,7 @@ const { description, title } = Astro.props;
 
 <style is:global>
   :root {
-    color-scheme: light dark;
+    color-scheme: dark;
   }
 
   html {

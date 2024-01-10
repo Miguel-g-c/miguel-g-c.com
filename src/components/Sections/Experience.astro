@@ -1,0 +1,121 @@
+---
+import ExperienceItem from "../ExperienceItem.astro";
+import Briefcase from "../Icons/Briefcase.astro";
+import Docker from "../Icons/Docker.astro";
+import FastAPI from "../Icons/FastAPI.astro";
+import Java from "../Icons/Java.astro";
+import JavaScript from "../Icons/JavaScript.astro";
+import MongoDB from "../Icons/MongoDB.astro";
+import PostgreSQL from "../Icons/PostgreSQL.astro";
+import Python from "../Icons/Python.astro";
+import React from "../Icons/React.astro";
+import SQLite from "../Icons/SQLite.astro";
+import TypeScript from "../Icons/TypeScript.astro";
+import SectionTitle from "../SectionTitle.astro";
+
+const techs = {
+  PYTHON: {
+    name: "Python",
+    icon: Python,
+  },
+  JAVA: {
+    name: "Java",
+    icon: Java,
+  },
+  JAVASCRIPT: {
+    name: "JavaScript",
+    icon: JavaScript,
+  },
+  TYPESCRIPT: {
+    name: "TypeScript",
+    icon: TypeScript,
+  },
+  FASTAPI: {
+    name: "FastAPI",
+    icon: FastAPI,
+  },
+  REACT: {
+    name: "React",
+    icon: React,
+  },
+  SQLITE: {
+    name: "SQLite",
+    icon: SQLite,
+  },
+  POSTGRESQL: {
+    name: "PostgreSQL",
+    icon: PostgreSQL,
+  },
+  MONGODB: {
+    name: "MongoDB",
+    icon: MongoDB,
+  },
+  DOCKER: {
+    name: "Docker",
+    icon: Docker,
+  },
+};
+
+const experiences = [
+  {
+    title: "Senior Engineer",
+    company: "Normative",
+    date: "2022-Present",
+    description:
+      "Engineering data pipelines and calculation engines, making carbon data accessible and understandable for all.",
+    technologies: [
+      techs.PYTHON,
+      techs.FASTAPI,
+      techs.SQLITE,
+      techs.POSTGRESQL,
+      techs.MONGODB,
+    ],
+  },
+  {
+    title: "Engineer",
+    company: "Greendelta",
+    date: "2021-2022",
+    description:
+      "Crafting cutting-edge web and data analysis tools to drive sustainable innovation based on life cycle methodologies.",
+    technologies: [
+      techs.JAVA,
+      techs.PYTHON,
+      techs.FASTAPI,
+      techs.TYPESCRIPT,
+      techs.REACT,
+      techs.POSTGRESQL,
+      techs.DOCKER,
+    ],
+  },
+  {
+    title: "Industrial PhD",
+    company: "Contactica + IMDEA Energy",
+    date: "2018-2021",
+    description:
+      "Developing an eco-design tool to optimize industrial processes with sustainability at its core.",
+    technologies: [techs.PYTHON, techs.JAVASCRIPT, techs.SQLITE],
+  },
+];
+---
+
+<section id="experience" data-section="experience" class="w-full">
+  <SectionTitle><Briefcase class="size-7" />Experience</SectionTitle>
+  <div class="mx-auto sm:px-6 sm:border-l sm:border-blue-300/30">
+    <div class="grid grid-cols-1 gap-y-8 items-baseline md:grid-cols-4">
+      <h2 class="text-lg sm:text-xl text-gray-300 font-semibold tracking-tight">
+        Recent timeline
+      </h2>
+      <div class="md:col-span-3">
+        <ol class="space-y-14">
+          {
+            experiences.map((exp) => (
+              <li class="flex flex-col items-start">
+                <ExperienceItem {...exp} />
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>

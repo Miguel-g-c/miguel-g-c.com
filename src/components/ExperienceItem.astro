@@ -1,0 +1,47 @@
+---
+interface Tech {
+  name: string;
+  icon: (_props: Record<string, any>) => any;
+}
+
+interface Props {
+  title: string;
+  company: string;
+  date: string;
+  description: string;
+  technologies: Tech[];
+}
+
+const { title, company, date, description, technologies } = Astro.props;
+---
+
+<div
+  class="w-full flex flex-row justify-between pl-2 border-l border-blue-300/30"
+>
+  <div class="flex flex-col">
+    <h3
+      class="font-semibold tracking-tight sm:max-w-none sm:text-lg text-white/85"
+    >
+      {company}
+    </h3>
+
+    <h2 class="text-sm sm:max-w-none sm:text-base text-sky-300/80">
+      {title}
+    </h2>
+  </div>
+  <time class="text-sm text-blue-300/40">{date}</time>
+</div>
+<p class="z-10 mt-4 mr-28 text-sm text-gray-300">
+  {description}
+</p>
+<div
+  class="flex flex-row gap-3 items-center mt-4 p-2 rounded-full bg-sky-300/10"
+>
+  {
+    technologies.map((tech) => (
+      <div title={tech.name}>
+        <tech.icon class="size-5" />
+      </div>
+    ))
+  }
+</div>
