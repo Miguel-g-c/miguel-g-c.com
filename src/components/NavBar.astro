@@ -1,17 +1,13 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
+import NavLink from "./NavLink.astro";
 ---
 
-<header class="flex justify-between items-center p-4 sticky top-0 z-50">
-  <nav
-    class="flex flex-row justify-center items-center border border-black rounded-full bg-black/50 backdrop-blur-xl px-4 mx-auto"
-  >
-    <HeaderLink id="about-link" href="#about">About</HeaderLink>
-    <HeaderLink id="experience-link" href="#experience">Experience</HeaderLink>
-    <HeaderLink id="projects-link" href="#projects">Projects</HeaderLink>
-    <HeaderLink id="contact-link" href="#about">Contact</HeaderLink>
-  </nav>
-</header>
+<nav class="flex flex-row justify-center items-center">
+  <NavLink id="about-link" href="#about">About</NavLink>
+  <NavLink id="experience-link" href="#experience">Experience</NavLink>
+  <NavLink id="projects-link" href="#projects">Projects</NavLink>
+  <NavLink id="contact-link" href="#about">Contact</NavLink>
+</nav>
 
 <script>
   const contactLink = document.getElementById("contact-link");
