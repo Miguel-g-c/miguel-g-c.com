@@ -1,0 +1,42 @@
+---
+interface Tech {
+  name: string;
+  icon: (_props: Record<string, any>) => any;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  technologies: Tech[];
+}
+
+const { title, description, image, link, technologies } = Astro.props;
+---
+
+<article
+  class="group flex flex-col items-start border border-blue-300/30 bg-gray-900/40 rounded-lg transition duration-300 ease-in-out hover:border-sky-300"
+>
+  <a href={link} target="_blank">
+    <div class="rounded-t-lg block overflow-hidden">
+      <figure class="w-auto h-52 md:h-40 object-cover">
+        <img
+          src={image}
+          class="transition duration-300 ease-in-out group-hover:scale-110"
+          alt={title}
+          decoding="async"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+    <div class="relative p-5">
+      <h3 class="text-xl font-semibold text-white/90">
+        {title}
+      </h3>
+      <p class="mt-5 text-sm text-gray-300">
+        {description}
+      </p>
+    </div>
+  </a>
+</article>
