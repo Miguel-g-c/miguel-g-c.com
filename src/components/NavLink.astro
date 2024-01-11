@@ -2,14 +2,15 @@
 interface Props {
   id: string;
   href: string;
+  class?: string;
 }
 
-const { id, href } = Astro.props;
+const { id, href, class: className } = Astro.props;
 ---
 
 <a
   id={id}
-  class="block py-1 px-3 tracking-tighter transition hover:text-sky-300"
+  class={`block py-1 px-3 tracking-tighter transition ${className} hover:text-sky-300`}
   href={href}
 >
   <slot />

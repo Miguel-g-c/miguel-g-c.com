@@ -1,20 +1,34 @@
 ---
 import NavLink from "./NavLink.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
 <nav class="flex flex-row justify-center items-center">
-  <NavLink id="about-link" href="#about">About</NavLink>
-  <NavLink id="experience-link" href="#experience">Experience</NavLink>
-  <NavLink id="projects-link" href="#projects">Projects</NavLink>
-  <NavLink id="contact-link" href="#about">Contact</NavLink>
+  <NavLink id="about-link" href="#about" class={className}>About</NavLink>
+  <NavLink id="experience-link" href="#experience" class={className}>
+    Experience
+  </NavLink>
+  <NavLink id="projects-link" href="#projects" class={className}>
+    Projects
+  </NavLink>
+  <NavLink id="contact-link" href="#about" class={className}>Contact</NavLink>
 </nav>
 
 <script>
-  const contactLink = document.getElementById("contact-link");
+  const contactLinks = document.querySelectorAll("#contact-link");
   const aboutSection = document.getElementById("about");
   const icons = document.querySelectorAll(".social-icon");
 
-  contactLink.addEventListener("click", () => {
+  contactLinks.forEach((item) =>
+    item.addEventListener("click", handleContactClick),
+  );
+
+  function handleContactClick() {
     const currentScrollPosition = window.scrollY;
     const targetPosition =
       aboutSection.getBoundingClientRect().top + currentScrollPosition;
@@ -41,5 +55,5 @@ import NavLink from "./NavLink.astro";
       animateIcon();
       const intervalId = setInterval(animateIcon, 500);
     }, scrollTime);
-  });
+  }
 </script>

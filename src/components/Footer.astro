@@ -1,0 +1,28 @@
+---
+import NavBar from "./NavBar.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="mt-20 sm:px-8">
+  <div
+    class="mx-auto max-w-4xl lg:px-8 pt-10 pb-16 border-t border-blue-300/10"
+  >
+    <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-6 justify-between items-center sm:flex-row">
+        <NavBar class="font-thin text-sm text-blue-300/30" />
+        <p class="text-sm text-blue-300/30">
+          © {currentYear} Miguel García Casas
+        </p>
+      </div>
+      <div class="flex items-end self-center sm:self-end">
+        <a
+          class="mx-auto text-sm text-blue-300/30 my-[10px] hover:text-sky-300/35"
+          href="mailto:miguel.g.c.505@gmail.com"
+        >
+          miguel.g.c.505@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
