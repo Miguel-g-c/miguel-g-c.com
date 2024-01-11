@@ -1,4 +1,5 @@
 ---
+import TechStack from "./TechStack.astro";
 interface Tech {
   name: string;
   icon: (_props: Record<string, any>) => any;
@@ -16,7 +17,7 @@ const { title, description, image, link, technologies } = Astro.props;
 ---
 
 <article
-  class="group flex flex-col items-start border border-blue-300/30 bg-gray-900/40 rounded-lg transition duration-300 ease-in-out hover:border-sky-300"
+  class="group flex flex-col items-start border border-blue-300/30 bg-gray-900/40 rounded-lg transition duration-300 ease-in-out hover:border-sky-300 hover:bg-gray-700/40"
 >
   <a href={link} target="_blank">
     <div class="rounded-t-lg block overflow-hidden">
@@ -31,12 +32,17 @@ const { title, description, image, link, technologies } = Astro.props;
       </figure>
     </div>
     <div class="relative p-5">
-      <h3 class="text-xl font-semibold text-white/90">
+      <h3
+        class="text-xl font-semibold text-white/90 transition duration-300 ease-in-out group-hover:text-sky-300/80"
+      >
         {title}
       </h3>
-      <p class="mt-5 text-sm text-gray-300">
+      <p
+        class="mt-5 text-sm text-gray-300 duration-300 ease-in-out group-hover:text-white/90"
+      >
         {description}
       </p>
+      <TechStack size={4} technologies={technologies} />
     </div>
   </a>
 </article>

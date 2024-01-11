@@ -1,4 +1,5 @@
 ---
+import TechStack from "./TechStack.astro";
 interface Tech {
   name: string;
   icon: (_props: Record<string, any>) => any;
@@ -33,15 +34,5 @@ const { title, company, date, description, technologies } = Astro.props;
   <p class="z-10 mt-4 mr-28 text-sm text-gray-300">
     {description}
   </p>
-  <div
-    class="inline-flex flex-row gap-3 items-center mt-4 p-2 rounded-full bg-sky-300/10"
-  >
-    {
-      technologies.map((tech) => (
-        <div title={tech.name}>
-          <tech.icon class="size-5" />
-        </div>
-      ))
-    }
-  </div>
+  <TechStack size={5} technologies={technologies} />
 </article>

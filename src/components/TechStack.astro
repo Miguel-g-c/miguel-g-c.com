@@ -1,0 +1,25 @@
+---
+interface Tech {
+  name: string;
+  icon: (_props: Record<string, any>) => any;
+}
+
+interface Props {
+  size: number;
+  technologies: Tech[];
+}
+
+const { size, technologies } = Astro.props;
+---
+
+<div
+  class="inline-flex flex-row gap-3 items-center mt-4 p-2 rounded-full bg-sky-300/10"
+>
+  {
+    technologies.map((tech) => (
+      <div title={tech.name}>
+        <tech.icon class={`size-${size}`} />
+      </div>
+    ))
+  }
+</div>
