@@ -10,6 +10,7 @@ interface Props {
 }
 
 const { size, technologies } = Astro.props;
+const rems = `${size / 4}rem`;
 ---
 
 <div
@@ -18,8 +19,15 @@ const { size, technologies } = Astro.props;
   {
     technologies.map((tech) => (
       <div title={tech.name}>
-        <tech.icon class={`size-${size}`} />
+        <tech.icon class="tech-icon" />
       </div>
     ))
   }
 </div>
+
+<style define:vars={{ rems }}>
+  .tech-icon {
+    width: var(--rems);
+    height: var(--rems);
+  }
+</style>
