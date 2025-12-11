@@ -1,13 +1,17 @@
 ---
 import NavBar from "./NavBar.astro";
+import DownloadButton from "./DownloadButton.astro";
 ---
 
-<header
-  class="flex justify-between items-center p-4 sticky top-0 z-50 print:hidden"
->
-  <div
-    class="border border-black rounded-full bg-black/50 backdrop-blur-xl px-4 mx-auto"
-  >
-    <NavBar />
+<header class="sticky top-0 z-50 flex justify-center p-4 print:hidden">
+  <div class="relative flex w-full max-w-[75ch] justify-center px-6">
+    <div
+      class="border border-black rounded-full bg-black/50 px-4 backdrop-blur-xl"
+    >
+      <NavBar />
+    </div>
+    <div class="absolute right-6 flex">
+      <DownloadButton />
+    </div>
   </div>
 </header>

@@ -1,0 +1,49 @@
+---
+import Download from "./Icons/Download.astro";
+---
+
+<div class="flex print:hidden">
+  <button
+    type="button"
+    data-download-button
+    class="group relative inline-flex items-center gap-0 overflow-hidden rounded-full border border-blue-300/30 bg-black/60 px-3 py-2 text-sm font-medium text-blue-100/80 transition-all duration-700 ease-out hover:border-sky-300 hover:bg-slate-800/80 hover:text-sky-200/90"
+    aria-label="Download as PDF"
+    title="Download as PDF"
+  >
+    <Download class="size-4 transition-transform duration-700 ease-out" />
+    <span
+      class="max-w-0 overflow-hidden whitespace-nowrap text-[11px] font-medium opacity-0 transition-all duration-700 ease-out group-hover:ml-2 group-hover:max-w-[160px] group-hover:opacity-100"
+    >
+      Download as PDF
+    </span>
+  </button>
+</div>
+
+<script>
+  const handleDownload = () => {
+    window.print();
+  };
+
+  const attachListener = () => {
+    const button = document.querySelector("[data-download-button]");
+    if (button) {
+      button.addEventListener("click", handleDownload);
+    }
+  };
+
+  const detachListener = () => {
+    const button = document.querySelector("[data-download-button]");
+    if (button) {
+      button.removeEventListener("click", handleDownload);
+    }
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attachListener);
+  } else {
+    attachListener();
+  }
+
+  document.addEventListener("astro:after-swap", attachListener);
+  document.addEventListener("astro:before-swap", detachListener);
+</script>

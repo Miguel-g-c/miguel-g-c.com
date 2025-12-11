@@ -55,6 +55,13 @@ const { description, title } = Astro.props;
     overscroll-behavior: none;
   }
 
+  @media print {
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
