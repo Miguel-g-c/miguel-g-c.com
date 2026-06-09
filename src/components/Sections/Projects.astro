@@ -109,11 +109,128 @@ const projects = [
     technologies: [techs.PYTHON],
   },
 ];
+
+const visibleProjects = projects.slice(0, 4);
+const hiddenProjects = projects.slice(4);
 ---
 
 <section id="projects" data-section="projects" class="w-full">
   <SectionTitle><Code class="size-7" />Projects</SectionTitle>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {projects.map((project) => <ProjectCard {...project} />)}
+    {visibleProjects.map((project) => <ProjectCard {...project} />)}
+    {
+      hiddenProjects.map((project) => (
+        <div class="project-extra" data-hidden-project>
+          <ProjectCard {...project} />
+        </div>
+      ))
+    }
   </div>
+  {
+    hiddenProjects.length > 0 && (
+      <div class="mt-6 flex justify-center print:hidden">
+        <button
+          type="button"
+          data-show-more-projects
+          class="group inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-black/60 px-4 py-2 text-sm font-medium text-blue-100/80 transition-all duration-300 ease-out hover:border-sky-300 hover:bg-slate-800/80 hover:text-sky-200/90"
+          aria-expanded="false"
+        >
+          <span>Show more projects</span>
+          <span
+            class="text-base leading-none transition-transform duration-300 ease-out group-hover:translate-y-0.5"
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </button>
+      </div>
+    )
+  }
 </section>
+
+<script>
+  const attachProjectToggle = () => {
+    const button = document.querySelector("[data-show-more-projects]");
+    const hiddenProjects = document.querySelectorAll("[data-hidden-project]");
+
+    if (!button || hiddenProjects.length === 0) return;
+
+    button.addEventListener(
+      "click",
+      () => {
+        hiddenProjects.forEach((project) => {
+          project.setAttribute("data-revealing", "true");
+          project.getBoundingClientRect();
+          project.setAttribute("data-expanded", "true");
+        });
+        button.setAttribute("aria-expanded", "true");
+        button.parentElement?.classList.add("projects-toggle-hidden");
+      },
+      { once: true },
+    );
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attachProjectToggle);
+  } else {
+    attachProjectToggle();
+  }
+
+  document.addEventListener("astro:after-swap", attachProjectToggle);
+</script>
+
+<style>
+  .project-extra {
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(1rem) scale(0.98);
+    transition:
+      max-height 500ms ease,
+      opacity 350ms ease,
+      transform 500ms ease;
+  }
+
+  .project-extra[data-revealing="true"],
+  .project-extra[data-expanded="true"] {
+    display: grid;
+  }
+
+  .project-extra[data-expanded="true"] {
+    max-height: 900px;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .projects-toggle-hidden {
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition:
+      max-height 250ms ease,
+      margin-top 250ms ease,
+      opacity 250ms ease,
+      transform 250ms ease;
+  }
+
+  @media print {
+    .project-extra {
+      display: block;
+      max-height: none;
+      overflow: visible;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-extra,
+    .projects-toggle-hidden {
+      transition: none;
+    }
+  }
+</style>
