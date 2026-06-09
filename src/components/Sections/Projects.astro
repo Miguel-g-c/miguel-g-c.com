@@ -68,6 +68,7 @@ const projects = [
       "A streamlined carbon accounting engine that calculates the carbon footprint of businesses or products. As the core of Normative's services, it gathers and analyzes operational data, providing accurate emission insights to aid businesses in reducing their environmental impact.",
     link: "https://normative.io/",
     image: "calcapi-dark.png",
+    imageLight: "calcapi-light.png",
     technologies: [techs.PYTHON, techs.FASTAPI, techs.SQLITE, techs.POSTGRESQL],
   },
   {
@@ -76,6 +77,7 @@ const projects = [
       "Assistants and agentic workflows for carbon accounting: chat agents connected to multiple MCPs for emissions data retrieval, calculation-trace explanations for auditors, RAG over help desk and methodology docs, and workflows that automatically select emission factors.",
     link: "https://normative.io",
     image: "ai-dark.png",
+    imageLight: "ai-light.png",
     technologies: [
       techs.PYTHON,
       techs.FASTAPI,
@@ -90,6 +92,7 @@ const projects = [
       "openLCA is one of the world’s leading open-source platforms for life cycle assessment. Its ecosystem extends into onlineLCA, enabling scalable, web-based sustainability calculations for enterprise environments, including integrations with ABB and Mercedes.",
     link: "https://www.openlca.org/",
     image: "openlca-dark.png",
+    imageLight: "openlca-light.png",
     technologies: [techs.JAVA, techs.PYTHON, techs.DOCKER],
   },
   {
@@ -98,6 +101,7 @@ const projects = [
       "INFINITE project revolutionizes building retrofitting with its digital environment for decision-making. Integrated into a BIM-Platform, the LCA plugin facilitates sustainable design at various stages. It combines technical and sustainability data, offering tailored solutions to stakeholders during the renovation process.",
     link: "https://build-up.ec.europa.eu/en/news-and-events/news/new-bim-platform-better-building-data-management",
     image: "infinite-dark.png",
+    imageLight: "infinite-light.png",
     technologies: [techs.PYTHON, techs.FASTAPI, techs.POSTGRESQL, techs.REACT],
   },
   {
@@ -106,6 +110,7 @@ const projects = [
       "A Python-based framework optimizing industrial processes with a focus on sustainability. It documents life cycle inventories and assesses environmental impacts. The tool integrates physicochemical models and multi-objective optimization algorithms for predictive and adaptive process design.",
     link: "https://doi.org/10.1016/j.compchemeng.2021.107624",
     image: "eco2des-dark.png",
+    imageLight: "eco2des-light.png",
     technologies: [techs.PYTHON],
   },
 ];
@@ -132,7 +137,7 @@ const hiddenProjects = projects.slice(4);
         <button
           type="button"
           data-show-more-projects
-          class="group inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-black/60 px-4 py-2 text-sm font-medium text-blue-100/80 transition-all duration-300 ease-out hover:border-sky-300 hover:bg-slate-800/80 hover:text-sky-200/90"
+          class="group inline-flex items-center gap-2 rounded-full border border-sky-700/20 bg-white/70 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm shadow-sky-900/5 transition-all duration-300 ease-out hover:border-sky-500/50 hover:bg-sky-50 hover:text-sky-700 dark:border-blue-300/30 dark:bg-black/60 dark:text-blue-100/80 dark:hover:border-sky-300 dark:hover:bg-slate-800/80 dark:hover:text-sky-200/90"
           aria-expanded="false"
         >
           <span>Show more projects</span>

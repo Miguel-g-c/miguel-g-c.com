@@ -20,14 +20,27 @@ const { description, title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme = prefersDark ? "dark" : "light";
+        const root = document.documentElement;
+
+        root.classList.toggle("dark", prefersDark);
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+      })();
+    </script>
   </head>
 
   <body
-    class="relative bg-neutral-950 text-white selection:bg-sky-300 selection:text-black"
+    class="relative bg-slate-50 text-slate-950 selection:bg-sky-300 selection:text-black dark:bg-neutral-950 dark:text-white"
   >
     <div
       class="absolute top-0 z-[-2] h-screen w-screen
-	         bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+	         bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(14,165,233,0.22),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
     </div>
     <Header />
@@ -38,6 +51,13 @@ const { description, title } = Astro.props;
 
 <style is:global>
   :root {
+    color-scheme: light;
+    --theme-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --theme-text-duration: 260ms;
+    --theme-surface-duration: 360ms;
+  }
+
+  :root.dark {
     color-scheme: dark;
   }
 
@@ -48,11 +68,40 @@ const { description, title } = Astro.props;
   }
 
   body {
-    color: rgba(17, 17, 17, 0.9);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     overscroll-behavior: none;
+  }
+
+  .theme-transition body,
+  .theme-transition header > div > div,
+  .theme-transition article,
+  .theme-transition button,
+  .theme-transition footer > div {
+    transition-duration: var(--theme-surface-duration);
+    transition-timing-function: var(--theme-ease);
+  }
+
+  .theme-transition :where(h1, h2, h3, h4, p, a, span, time, li) {
+    transition-duration: var(--theme-text-duration);
+    transition-timing-function: var(--theme-ease);
+  }
+
+  .theme-transition body,
+  .theme-transition header > div > div,
+  .theme-transition article,
+  .theme-transition button,
+  .theme-transition footer > div {
+    transition-property: background-color, border-color, box-shadow, color;
+  }
+
+  .theme-transition :where(h1, h2, h3, h4, p, a, span, time, li) {
+    transition-property: color, border-color;
+  }
+
+  .theme-transition :where(svg, svg *) {
+    transition-property: none;
   }
 
   @media print {
@@ -66,11 +115,14 @@ const { description, title } = Astro.props;
     html {
       scroll-behavior: auto;
     }
-  }
 
-  @media (prefers-color-scheme: dark) {
-    body {
-      color: rgba(255, 255, 255, 0.9);
+    .theme-transition body,
+    .theme-transition header > div > div,
+    .theme-transition article,
+    .theme-transition button,
+    .theme-transition footer > div,
+    .theme-transition :where(h1, h2, h3, h4, p, a, span, time, li) {
+      transition-duration: 0ms;
     }
   }
 </style>

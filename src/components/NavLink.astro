@@ -10,7 +10,7 @@ const { id, href, class: className } = Astro.props;
 
 <a
   id={id}
-  class={`block py-1 px-3 tracking-tighter transition ${className} hover:text-sky-300`}
+  class={`block py-1 px-3 tracking-tighter transition-colors duration-[260ms] ease-out ${className} hover:text-sky-700 dark:hover:text-sky-300`}
   href={href}
 >
   <slot />

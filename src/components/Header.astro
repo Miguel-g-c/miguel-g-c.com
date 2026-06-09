@@ -1,16 +1,18 @@
 ---
 import NavBar from "./NavBar.astro";
 import DownloadButton from "./DownloadButton.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header class="sticky top-0 z-50 flex justify-center p-4 print:hidden">
   <div class="relative flex w-full max-w-[75ch] justify-center px-6">
     <div
-      class="border border-black rounded-full bg-black/50 px-4 backdrop-blur-xl"
+      class="rounded-full border border-sky-900/10 bg-white/65 px-4 text-slate-700 shadow-sm shadow-sky-900/5 backdrop-blur-xl dark:border-black dark:bg-black/50 dark:text-white"
     >
       <NavBar />
     </div>
-    <div class="absolute right-6 flex">
+    <div class="absolute right-6 flex gap-2">
+      <ThemeToggle />
       <DownloadButton />
     </div>
   </div>

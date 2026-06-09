@@ -17,21 +17,25 @@ const { title, company, date, description, technologies } = Astro.props;
 ---
 
 <article>
-  <div class="flex flex-row justify-between pl-2 border-l border-blue-300/30">
+  <div
+    class="flex flex-row justify-between border-l border-sky-700/20 pl-2 dark:border-blue-300/30"
+  >
     <div class="flex flex-col">
       <h3
-        class="font-semibold tracking-tight sm:max-w-none sm:text-lg text-white/85"
+        class="font-semibold tracking-tight text-slate-950/85 sm:max-w-none sm:text-lg dark:text-white/85"
       >
         {company}
       </h3>
 
-      <h2 class="text-sm sm:max-w-none sm:text-base text-sky-300/80">
+      <h2
+        class="text-sm text-sky-700/90 sm:max-w-none sm:text-base dark:text-sky-300/80"
+      >
         {title}
       </h2>
     </div>
-    <time class="text-sm text-blue-300/40">{date}</time>
+    <time class="text-sm text-sky-700/45 dark:text-blue-300/40">{date}</time>
   </div>
-  <p class="z-10 mt-4 mr-28 text-sm text-gray-300">
+  <p class="z-10 mt-4 mr-28 text-sm text-slate-600 dark:text-gray-300">
     {description}
   </p>
   <TechStack size={5} technologies={technologies} />

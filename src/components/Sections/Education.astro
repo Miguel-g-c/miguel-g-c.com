@@ -37,9 +37,13 @@ const education: EducationEntry[] = [
   class="hidden print:block print:w-full print:px-0"
 >
   <SectionTitle><AcademicCap class="size-7" />Education</SectionTitle>
-  <div class="mx-auto sm:px-6 sm:border-l sm:border-blue-300/30">
+  <div
+    class="mx-auto sm:px-6 sm:border-l sm:border-sky-700/20 dark:sm:border-blue-300/30"
+  >
     <div class="grid grid-cols-1 gap-y-8 items-baseline md:grid-cols-4">
-      <h2 class="text-lg sm:text-xl text-gray-300 font-semibold tracking-tight">
+      <h2
+        class="text-lg font-semibold tracking-tight text-slate-600 sm:text-xl dark:text-gray-300"
+      >
         Academic path
       </h2>
       <div class="md:col-span-3">
@@ -47,23 +51,25 @@ const education: EducationEntry[] = [
           {
             education.map((entry) => (
               <li class="flex flex-col gap-3 break-inside-avoid">
-                <div class="flex flex-row justify-between pl-2 border-l border-blue-300/30">
+                <div class="flex flex-row justify-between border-l border-sky-700/20 pl-2 dark:border-blue-300/30">
                   <div class="flex flex-col">
-                    <h3 class="font-semibold tracking-tight sm:text-lg text-white/85">
+                    <h3 class="font-semibold tracking-tight text-slate-950/85 sm:text-lg dark:text-white/85">
                       {entry.institution}
                     </h3>
-                    <h4 class="text-sm sm:text-base text-sky-300/80">
+                    <h4 class="text-sm text-sky-700/90 sm:text-base dark:text-sky-300/80">
                       {entry.degree}
                     </h4>
-                    <ul class="flex flex-wrap gap-2 py-1 text-xs text-blue-100/80">
+                    <ul class="flex flex-wrap gap-2 py-1 text-xs text-sky-800/80 dark:text-blue-100/80">
                       {entry.highlights.map((highlight) => (
-                        <li class="rounded border border-blue-300/40 px-2 py-1">
+                        <li class="rounded border border-sky-700/25 px-2 py-1 dark:border-blue-300/40">
                           {highlight}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <time class="text-sm text-blue-300/40">{entry.date}</time>
+                  <time class="text-sm text-sky-700/45 dark:text-blue-300/40">
+                    {entry.date}
+                  </time>
                 </div>
               </li>
             ))

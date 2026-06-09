@@ -9,22 +9,32 @@ interface Props {
   title: string;
   description: string;
   image: string;
+  imageLight?: string;
   link: string;
   technologies: Tech[];
 }
 
-const { title, description, image, link, technologies } = Astro.props;
+const { title, description, image, imageLight, link, technologies } =
+  Astro.props;
+const lightImage = imageLight ?? image;
 ---
 
 <article
-  class="group flex flex-col items-start border border-blue-300/30 bg-gray-900/40 rounded-lg transition duration-300 ease-in-out hover:border-sky-300 hover:bg-gray-700/40"
+  class="group flex flex-col items-start rounded-lg border border-sky-700/15 bg-white/70 shadow-sm shadow-sky-900/5 transition duration-300 ease-in-out hover:border-sky-500/60 hover:bg-sky-50/80 dark:border-blue-300/30 dark:bg-gray-900/40 dark:shadow-none dark:hover:border-sky-300 dark:hover:bg-gray-700/40"
 >
   <a href={link} target="_blank">
     <div class="rounded-t-lg block overflow-hidden print:hidden">
-      <figure class="w-auto h-52 md:h-40 object-cover">
+      <figure class="relative h-52 w-auto overflow-hidden md:h-40">
         <img
           src={image}
-          class="transition duration-300 ease-in-out group-hover:scale-110"
+          class="absolute inset-0 h-full w-full object-cover opacity-0 transition duration-500 ease-in-out group-hover:scale-110 dark:opacity-100"
+          alt={title}
+          decoding="async"
+          loading="lazy"
+        />
+        <img
+          src={lightImage}
+          class="absolute inset-0 h-full w-full object-cover opacity-100 transition duration-500 ease-in-out group-hover:scale-110 dark:opacity-0"
           alt={title}
           decoding="async"
           loading="lazy"
@@ -33,12 +43,12 @@ const { title, description, image, link, technologies } = Astro.props;
     </div>
     <div class="relative p-5">
       <h3
-        class="text-xl font-semibold text-white/90 transition duration-300 ease-in-out group-hover:text-sky-300/80"
+        class="text-xl font-semibold text-slate-950/90 transition duration-300 ease-in-out group-hover:text-sky-700 dark:text-white/90 dark:group-hover:text-sky-300/80"
       >
         {title}
       </h3>
       <p
-        class="mt-5 text-sm text-gray-300 duration-300 ease-in-out group-hover:text-white/90"
+        class="mt-5 text-sm text-slate-600 duration-300 ease-in-out group-hover:text-slate-800 dark:text-gray-300 dark:group-hover:text-white/90"
       >
         {description}
       </p>
