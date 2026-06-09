@@ -8,6 +8,10 @@ import StatusBadge from "../StatusBadge.astro";
 
 const currentYear = new Date().getFullYear();
 const yearsOfExperience = currentYear - 2016;
+const githubUrl = "https://github.com/Miguel-g-c";
+const linkedInUrl =
+  "https://www.linkedin.com/in/miguel-garcía-casas-b0b683145/";
+const email = "miguel.g.c.505@gmail.com";
 ---
 
 <section id="about" data-section="about">
@@ -15,18 +19,14 @@ const yearsOfExperience = currentYear - 2016;
     class="flex flex-col gap-3 items-center mx-auto mt-20 lg:mt-32 print:mt-12"
   >
     <Avatar />
-    <nav class="flex flex-row gap-2">
-      <a
-        href="https://github.com/Miguel-g-c"
-        target="_blank"
-        aria-label="Visit my GitHub profile"
-      >
+    <nav class="flex flex-row gap-2 print:hidden">
+      <a href={githubUrl} target="_blank" aria-label="Visit my GitHub profile">
         <GitHub
           class="social-icon size-8 transition-colors duration-[260ms] ease-out hover:text-sky-600 dark:hover:text-sky-300"
         />
       </a>
       <a
-        href="https://www.linkedin.com/in/miguel-garcía-casas-b0b683145/"
+        href={linkedInUrl}
         target="_blank"
         aria-label="Connect with me on LinkedIn"
       >
@@ -34,11 +34,7 @@ const yearsOfExperience = currentYear - 2016;
           class="social-icon size-8 transition-colors duration-[260ms] ease-out hover:text-sky-600 dark:hover:text-sky-300"
         />
       </a>
-      <a
-        href="mailto:miguel.g.c.505@gmail.com"
-        target="_blank"
-        aria-label="Email me"
-      >
+      <a href={`mailto:${email}`} target="_blank" aria-label="Email me">
         <Mail
           class="social-icon size-8 transition-colors duration-[260ms] ease-out hover:text-sky-600 dark:hover:text-sky-300"
         />

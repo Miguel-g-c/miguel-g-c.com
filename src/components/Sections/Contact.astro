@@ -1,0 +1,75 @@
+---
+import GitHub from "../Icons/GitHub.astro";
+import LinkedIn from "../Icons/LinkedIn.astro";
+import Mail from "../Icons/Mail.astro";
+import SectionTitle from "../SectionTitle.astro";
+
+interface ContactEntry {
+  label: string;
+  value: string;
+  href: string;
+  icon: (_props: Record<string, any>) => any;
+}
+
+const contacts: ContactEntry[] = [
+  {
+    label: "GitHub",
+    value: "github.com/Miguel-g-c",
+    href: "https://github.com/Miguel-g-c",
+    icon: GitHub,
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/miguel-garcía-casas-b0b683145/",
+    href: "https://www.linkedin.com/in/miguel-garcía-casas-b0b683145/",
+    icon: LinkedIn,
+  },
+  {
+    label: "Email",
+    value: "miguel.g.c.505@gmail.com",
+    href: "mailto:miguel.g.c.505@gmail.com",
+    icon: Mail,
+  },
+];
+---
+
+<section
+  id="contact-print"
+  data-section="contact"
+  class="hidden print:block print:w-full print:break-before-page print:break-inside-avoid print:px-0"
+>
+  <SectionTitle><Mail class="size-7" />Contact</SectionTitle>
+  <div
+    class="mx-auto sm:px-6 sm:border-l sm:border-sky-700/20 dark:sm:border-blue-300/30"
+  >
+    <div class="grid grid-cols-1 gap-y-8 items-baseline md:grid-cols-4">
+      <h2
+        class="text-lg font-semibold tracking-tight text-slate-600 sm:text-xl dark:text-gray-300"
+      >
+        Get in touch
+      </h2>
+      <div class="md:col-span-3">
+        <ul class="w-full space-y-4">
+          {
+            contacts.map((contact) => (
+              <li class="break-inside-avoid">
+                <a
+                  href={contact.href}
+                  class="flex items-center gap-3 border-l border-sky-700/20 pl-2 text-sm text-slate-700 dark:border-blue-300/30 dark:text-gray-300"
+                >
+                  <contact.icon class="size-4 shrink-0 text-slate-950 dark:text-white/85" />
+                  <span class="w-16 shrink-0 font-semibold tracking-tight text-slate-950/85 dark:text-white/85">
+                    {contact.label}
+                  </span>
+                  <span class="min-w-0 break-all text-sky-700/90 dark:text-sky-300/80">
+                    {contact.value}
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

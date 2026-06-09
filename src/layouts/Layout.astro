@@ -39,6 +39,7 @@ const { description, title } = Astro.props;
     class="relative bg-slate-50 text-slate-950 selection:bg-sky-300 selection:text-black dark:bg-neutral-950 dark:text-white"
   >
     <div
+      data-page-background
       class="absolute top-0 z-[-2] h-screen w-screen
 	         bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(14,165,233,0.22),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
     >
@@ -105,9 +106,72 @@ const { description, title } = Astro.props;
   }
 
   @media print {
+    :root,
+    :root.dark {
+      color-scheme: light;
+    }
+
+    html,
     body {
+      background: #ffffff !important;
+      color: #0f172a !important;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
+    }
+
+    [data-page-background] {
+      display: none !important;
+    }
+
+    main {
+      background: #ffffff !important;
+    }
+
+    :where(section, div, article, header, footer) {
+      box-shadow: none !important;
+    }
+
+    :where(h1, h2, h3, h4) {
+      color: #020617 !important;
+    }
+
+    :where(p, li, time) {
+      color: #334155 !important;
+    }
+
+    :where(a) {
+      color: #0369a1 !important;
+      text-decoration: none;
+    }
+
+    :where(
+        [class*="font-bold"],
+        [class*="font-semibold"],
+        [class*="font-medium"]
+      ) {
+      color: #020617 !important;
+    }
+
+    :where([class*="text-sky"], [class*="text-blue"]) {
+      color: #0369a1 !important;
+    }
+
+    :where([class*="border-blue"], [class*="border-sky"]) {
+      border-color: #bae6fd !important;
+    }
+
+    article {
+      background: #ffffff !important;
+      border-color: #bae6fd !important;
+    }
+
+    article:hover {
+      background: #ffffff !important;
+      border-color: #bae6fd !important;
+    }
+
+    :where(.tech-icon) {
+      color: inherit !important;
     }
   }
 

@@ -121,7 +121,7 @@ const hiddenProjects = projects.slice(4);
 
 <section id="projects" data-section="projects" class="w-full">
   <SectionTitle><Code class="size-7" />Projects</SectionTitle>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-projects-grid>
     {visibleProjects.map((project) => <ProjectCard {...project} />)}
     {
       hiddenProjects.map((project) => (
@@ -184,7 +184,7 @@ const hiddenProjects = projects.slice(4);
   document.addEventListener("astro:after-swap", attachProjectToggle);
 </script>
 
-<style>
+<style is:global>
   .project-extra {
     display: none;
     max-height: 0;
@@ -223,6 +223,20 @@ const hiddenProjects = projects.slice(4);
   }
 
   @media print {
+    [data-projects-grid] {
+      display: block;
+    }
+
+    #projects article,
+    .project-extra {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    #projects article {
+      margin-bottom: 1rem;
+    }
+
     .project-extra {
       display: block;
       max-height: none;
