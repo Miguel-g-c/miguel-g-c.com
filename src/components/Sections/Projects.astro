@@ -12,6 +12,7 @@ import React from "../Icons/React.astro";
 import SQLite from "../Icons/SQLite.astro";
 import TypeScript from "../Icons/TypeScript.astro";
 import SectionTitle from "../SectionTitle.astro";
+import PydanticAI from "../Icons/PydanticAI.astro";
 
 const techs = {
   PYTHON: {
@@ -54,39 +55,57 @@ const techs = {
     name: "Docker",
     icon: Docker,
   },
+  PYDANTIC_AI: {
+    name: "PydanticAI",
+    icon: PydanticAI,
+  },
 };
 
 const projects = [
   {
     title: "Normative's calc-api",
     description:
-      "A streamlined carbon accounting engine that calculates the carbon footprint of business activities. As the core of Normative's services, it gathers and analyzes operational data, providing accurate emission insights to aid businesses in reducing their environmental impact.",
+      "A streamlined carbon accounting engine that calculates the carbon footprint of businesses or products. As the core of Normative's services, it gathers and analyzes operational data, providing accurate emission insights to aid businesses in reducing their environmental impact.",
     link: "https://normative.io/",
-    image: "calc-api.svg",
+    image: "calcapi-dark.png",
     technologies: [techs.PYTHON, techs.FASTAPI, techs.SQLITE, techs.POSTGRESQL],
+  },
+  {
+    title: "AI for carbon accounting",
+    description:
+      "Assistants and agentic workflows for carbon accounting: chat agents connected to multiple MCPs for emissions data retrieval, calculation-trace explanations for auditors, RAG over help desk and methodology docs, and workflows that automatically select emission factors.",
+    link: "https://normative.io",
+    image: "ai-dark.png",
+    technologies: [
+      techs.PYTHON,
+      techs.FASTAPI,
+      techs.PYDANTIC_AI,
+      techs.SQLITE,
+      techs.POSTGRESQL,
+    ],
+  },
+  {
+    title: "openLCA ecosystem",
+    description:
+      "openLCA is one of the world’s leading open-source platforms for life cycle assessment. Its ecosystem extends into onlineLCA, enabling scalable, web-based sustainability calculations for enterprise environments, including integrations with ABB and Mercedes.",
+    link: "https://www.openlca.org/",
+    image: "openlca-dark.png",
+    technologies: [techs.JAVA, techs.PYTHON, techs.DOCKER],
   },
   {
     title: "Infinite's LCA plugin",
     description:
       "INFINITE project revolutionizes building retrofitting with its digital environment for decision-making. Integrated into a BIM-Platform, the LCA plugin facilitates sustainable design at various stages. It combines technical and sustainability data, offering tailored solutions to stakeholders during the renovation process.",
     link: "https://build-up.ec.europa.eu/en/news-and-events/news/new-bim-platform-better-building-data-management",
-    image: "infinite.webp",
+    image: "infinite-dark.png",
     technologies: [techs.PYTHON, techs.FASTAPI, techs.POSTGRESQL, techs.REACT],
-  },
-  {
-    title: "openLCA ecosystem",
-    description:
-      "It integrates advanced modules like olca-ipc, a Python package for efficient inter-process communication (IPC) with openLCA. Additionally, the ecosystem features olca-simapro-csv, a robust API designed for reading and writing the SimaPro CSV format, facilitating easy import into openLCA. Plus, many more tools and packages.",
-    link: "https://github.com/GreenDelta",
-    image: "openLCA.webp",
-    technologies: [techs.JAVA, techs.PYTHON, techs.DOCKER],
   },
   {
     title: "eco2des",
     description:
       "A Python-based framework optimizing industrial processes with a focus on sustainability. It documents life cycle inventories and assesses environmental impacts. The tool integrates physicochemical models and multi-objective optimization algorithms for predictive and adaptive process design.",
-    link: "https://www.sciencedirect.com/science/article/abs/pii/B9780128233771503323",
-    image: "eco2des.webp",
+    link: "https://doi.org/10.1016/j.compchemeng.2021.107624",
+    image: "eco2des-dark.png",
     technologies: [techs.PYTHON],
   },
 ];
