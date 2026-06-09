@@ -6,13 +6,15 @@ import Download from "./Icons/Download.astro";
   <button
     type="button"
     data-download-button
-    class="group relative inline-flex items-center gap-0 overflow-hidden rounded-full border border-sky-700/20 bg-white/70 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm shadow-sky-900/5 transition-all duration-700 ease-out hover:border-sky-500/50 hover:bg-sky-50 hover:text-sky-700 dark:border-blue-300/30 dark:bg-black/60 dark:text-blue-100/80 dark:hover:border-sky-300 dark:hover:bg-slate-800/80 dark:hover:text-sky-200/90"
+    class="group relative inline-flex size-9 items-center justify-center gap-0 overflow-hidden rounded-full border border-sky-700/20 bg-white/70 text-sm font-medium text-slate-700 shadow-sm shadow-sky-900/5 backdrop-blur-xl transition-all duration-500 ease-out hover:border-sky-500/50 hover:bg-sky-50 hover:text-sky-700 dark:border-blue-300/30 dark:bg-black/60 dark:text-blue-100/80 dark:hover:border-sky-300 dark:hover:bg-slate-800/80 dark:hover:text-sky-200/90 lg:hover:w-[150px]"
     aria-label="Download as PDF"
     title="Download as PDF"
   >
-    <Download class="size-4 transition-transform duration-700 ease-out" />
+    <Download
+      class="size-4 shrink-0 transition-transform duration-500 ease-out"
+    />
     <span
-      class="max-w-0 overflow-hidden whitespace-nowrap text-[11px] font-medium opacity-0 transition-all duration-700 ease-out group-hover:ml-2 group-hover:max-w-[160px] group-hover:opacity-100"
+      class="max-w-0 overflow-hidden whitespace-nowrap text-[11px] font-medium opacity-0 transition-all duration-500 ease-out lg:group-hover:ml-2 lg:group-hover:max-w-[160px] lg:group-hover:opacity-100"
     >
       Download as PDF
     </span>

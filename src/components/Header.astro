@@ -4,14 +4,18 @@ import DownloadButton from "./DownloadButton.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header class="sticky top-0 z-50 flex justify-center p-4 print:hidden">
-  <div class="relative flex w-full max-w-[75ch] justify-center px-6">
+<header
+  class="sticky top-0 z-50 flex justify-center px-3 py-3 print:hidden sm:px-4"
+>
+  <div
+    class="flex w-full max-w-5xl flex-col items-center justify-center gap-2 md:flex-row md:gap-3"
+  >
     <div
-      class="rounded-full border border-sky-900/10 bg-white/65 px-4 text-slate-700 shadow-sm shadow-sky-900/5 backdrop-blur-xl dark:border-black dark:bg-black/50 dark:text-white"
+      class="max-w-full overflow-x-auto rounded-full border border-sky-900/10 bg-white/65 px-3 text-slate-700 shadow-sm shadow-sky-900/5 backdrop-blur-xl dark:border-black dark:bg-black/50 dark:text-white sm:px-4"
     >
       <NavBar />
     </div>
-    <div class="absolute right-6 flex gap-2">
+    <div class="flex shrink-0 gap-2">
       <ThemeToggle />
       <DownloadButton />
     </div>

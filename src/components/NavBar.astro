@@ -8,7 +8,7 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<nav class="flex flex-row justify-center items-center">
+<nav class="flex flex-row items-center justify-center whitespace-nowrap">
   <NavLink id="about-link" href="#about" class={className}>About</NavLink>
   <NavLink id="experience-link" href="#experience" class={className}>
     Experience
