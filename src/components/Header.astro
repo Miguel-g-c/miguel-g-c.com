@@ -5,16 +5,136 @@ import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header class="sticky top-0 z-50 bg-bg/80 backdrop-blur-md print:hidden">
-  <div class="mx-auto flex w-full max-w-[808px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-3">
+  <div class="relative mx-auto flex w-full max-w-[808px] items-center justify-between gap-x-6 px-6 py-3">
     <a href="#top" class="font-mono text-sm font-medium no-underline">
       miguel-g-c<span class="text-faint">.com</span>
     </a>
-    <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
-      <NavBar />
+    <div class="flex items-center gap-x-5">
+      <NavBar class="hidden sm:flex" />
       <div class="flex items-center gap-2">
         <DownloadButton />
         <ThemeToggle />
+        <button
+          type="button"
+          data-menu-toggle
+          class="btn w-11 px-0 sm:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open menu"
+        >
+          <svg
+            class="menu-open size-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+          <svg
+            class="menu-close size-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 6l12 12M18 6L6 18"></path>
+          </svg>
+        </button>
       </div>
+    </div>
+
+    <div
+      id="mobile-nav"
+      data-menu-panel
+      hidden
+      class="absolute top-full right-6 mt-1 w-48 rounded-xl border border-line bg-bg p-1.5 shadow-lg shadow-fg/10 sm:hidden"
+    >
+      <NavBar direction="column" />
     </div>
   </div>
 </header>
+
+<style>
+  [data-menu-toggle] .menu-close,
+  [data-menu-toggle][aria-expanded="true"] .menu-open {
+    display: none;
+  }
+
+  [data-menu-toggle][aria-expanded="true"] .menu-close {
+    display: block;
+  }
+
+  [data-menu-panel] {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+    transform-origin: top right;
+    transition:
+      opacity 180ms ease-out,
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-menu-panel][data-open] {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+
+<script>
+  const toggle =
+    document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const panel = document.querySelector<HTMLElement>("[data-menu-panel]");
+
+  if (toggle && panel) {
+    let closeTimer = 0;
+
+    const open = () => {
+      window.clearTimeout(closeTimer);
+      panel.hidden = false;
+      panel.getBoundingClientRect();
+      panel.dataset.open = "";
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Close menu");
+    };
+
+    const close = () => {
+      delete panel.dataset.open;
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
+      closeTimer = window.setTimeout(() => {
+        panel.hidden = true;
+      }, 220);
+    };
+
+    const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
+
+    toggle.addEventListener("click", () => (isOpen() ? close() : open()));
+
+    panel.addEventListener("click", (event) => {
+      if ((event.target as HTMLElement).closest("a")) close();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!isOpen()) return;
+      const target = event.target as Node;
+      if (!panel.contains(target) && !toggle.contains(target)) close();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && isOpen()) {
+        close();
+        toggle.focus();
+      }
+    });
+
+    window.matchMedia("(min-width: 40rem)").addEventListener("change", (e) => {
+      if (e.matches && isOpen()) close();
+    });
+  }
+</script>
