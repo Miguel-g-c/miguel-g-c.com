@@ -1,23 +1,20 @@
 ---
-import NavBar from "./NavBar.astro";
 import DownloadButton from "./DownloadButton.astro";
+import NavBar from "./NavBar.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header
-  class="sticky top-0 z-50 flex justify-center px-3 py-3 print:hidden sm:px-4"
->
-  <div
-    class="flex w-full max-w-5xl flex-col items-center justify-center gap-2 md:flex-row md:gap-3"
-  >
-    <div
-      class="max-w-full overflow-x-auto rounded-full border border-sky-900/10 bg-white/65 px-3 text-slate-700 shadow-sm shadow-sky-900/5 backdrop-blur-xl dark:border-black dark:bg-black/50 dark:text-white sm:px-4"
-    >
+<header class="sticky top-0 z-50 bg-bg/80 backdrop-blur-md print:hidden">
+  <div class="mx-auto flex w-full max-w-[808px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-3">
+    <a href="#top" class="font-mono text-sm font-medium no-underline">
+      miguel-g-c<span class="text-faint">.com</span>
+    </a>
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
       <NavBar />
-    </div>
-    <div class="flex shrink-0 gap-2">
-      <ThemeToggle />
-      <DownloadButton />
+      <div class="flex items-center gap-2">
+        <DownloadButton />
+        <ThemeToggle />
+      </div>
     </div>
   </div>
 </header>

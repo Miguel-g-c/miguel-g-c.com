@@ -1,117 +1,52 @@
 ---
-import Code from "../Icons/Code.astro";
+import Agents from "../Illustrations/Agents.astro";
+import CalcApi from "../Illustrations/CalcApi.astro";
+import Eco2des from "../Illustrations/Eco2des.astro";
+import Infinite from "../Illustrations/Infinite.astro";
+import OpenLca from "../Illustrations/OpenLca.astro";
 import ProjectCard from "../ProjectCard.astro";
-import Docker from "../Icons/Docker.astro";
-import FastAPI from "../Icons/FastAPI.astro";
-import Java from "../Icons/Java.astro";
-import JavaScript from "../Icons/JavaScript.astro";
-import MongoDB from "../Icons/MongoDB.astro";
-import PostgreSQL from "../Icons/PostgreSQL.astro";
-import Python from "../Icons/Python.astro";
-import React from "../Icons/React.astro";
-import SQLite from "../Icons/SQLite.astro";
-import TypeScript from "../Icons/TypeScript.astro";
 import SectionTitle from "../SectionTitle.astro";
-import PydanticAI from "../Icons/PydanticAI.astro";
-
-const techs = {
-  PYTHON: {
-    name: "Python",
-    icon: Python,
-  },
-  JAVA: {
-    name: "Java",
-    icon: Java,
-  },
-  JAVASCRIPT: {
-    name: "JavaScript",
-    icon: JavaScript,
-  },
-  TYPESCRIPT: {
-    name: "TypeScript",
-    icon: TypeScript,
-  },
-  FASTAPI: {
-    name: "FastAPI",
-    icon: FastAPI,
-  },
-  REACT: {
-    name: "React",
-    icon: React,
-  },
-  SQLITE: {
-    name: "SQLite",
-    icon: SQLite,
-  },
-  POSTGRESQL: {
-    name: "PostgreSQL",
-    icon: PostgreSQL,
-  },
-  MONGODB: {
-    name: "MongoDB",
-    icon: MongoDB,
-  },
-  DOCKER: {
-    name: "Docker",
-    icon: Docker,
-  },
-  PYDANTIC_AI: {
-    name: "PydanticAI",
-    icon: PydanticAI,
-  },
-};
 
 const projects = [
   {
     title: "Normative's calc-api",
     description:
-      "A streamlined carbon accounting engine that calculates the carbon footprint of businesses or products. As the core of Normative's services, it gathers and analyzes operational data, providing accurate emission insights to aid businesses in reducing their environmental impact.",
+      "A streamlined carbon accounting engine that calculates the carbon footprint of businesses or products. As the core of Normative's services, it gathers and analyses operational data, providing accurate emission insights.",
     link: "https://normative.io/",
-    image: "calcapi-dark.png",
-    imageLight: "calcapi-light.png",
-    technologies: [techs.PYTHON, techs.FASTAPI, techs.SQLITE, techs.POSTGRESQL],
+    illustration: CalcApi,
+    technologies: ["python", "fastapi", "sqlite", "postgresql"],
   },
   {
     title: "AI for carbon accounting",
     description:
-      "Assistants and agentic workflows for carbon accounting: chat agents connected to multiple MCPs for emissions data retrieval, calculation-trace explanations for auditors, RAG over help desk and methodology docs, and workflows that automatically select emission factors.",
-    link: "https://normative.io",
-    image: "ai-dark.png",
-    imageLight: "ai-light.png",
-    technologies: [
-      techs.PYTHON,
-      techs.FASTAPI,
-      techs.PYDANTIC_AI,
-      techs.SQLITE,
-      techs.POSTGRESQL,
-    ],
+      "Assistants and agentic workflows for carbon accounting: chat agents connected to multiple MCPs for emissions data, calculation-trace explanations for auditors, RAG over methodology docs, and workflows that select emission factors automatically.",
+    link: "https://normative.io/",
+    illustration: Agents,
+    technologies: ["python", "fastapi", "pydanticai", "sqlite", "postgresql"],
   },
   {
     title: "openLCA ecosystem",
     description:
-      "openLCA is one of the world’s leading open-source platforms for life cycle assessment. Its ecosystem extends into onlineLCA, enabling scalable, web-based sustainability calculations for enterprise environments, including integrations with ABB and Mercedes.",
+      "openLCA is one of the world's leading open-source platforms for life cycle assessment. Its ecosystem extends into onlineLCA, enabling scalable, web-based sustainability calculations for enterprises, including integrations with ABB and Mercedes.",
     link: "https://www.openlca.org/",
-    image: "openlca-dark.png",
-    imageLight: "openlca-light.png",
-    technologies: [techs.JAVA, techs.PYTHON, techs.DOCKER],
+    illustration: OpenLca,
+    technologies: ["java", "python", "docker"],
   },
   {
     title: "Infinite's LCA plugin",
     description:
-      "INFINITE project revolutionizes building retrofitting with its digital environment for decision-making. Integrated into a BIM-Platform, the LCA plugin facilitates sustainable design at various stages. It combines technical and sustainability data, offering tailored solutions to stakeholders during the renovation process.",
+      "INFINITE brings a digital environment for decision-making to building retrofitting. Integrated into a BIM platform, the LCA plugin combines technical and sustainability data to support sustainable design at every stage of a renovation.",
     link: "https://build-up.ec.europa.eu/en/news-and-events/news/new-bim-platform-better-building-data-management",
-    image: "infinite-dark.png",
-    imageLight: "infinite-light.png",
-    technologies: [techs.PYTHON, techs.FASTAPI, techs.POSTGRESQL, techs.REACT],
+    illustration: Infinite,
+    technologies: ["python", "fastapi", "postgresql", "react"],
   },
   {
     title: "eco2des",
     description:
-      "A Python-based framework optimizing industrial processes with a focus on sustainability. It documents life cycle inventories and assesses environmental impacts. The tool integrates physicochemical models and multi-objective optimization algorithms for predictive and adaptive process design.",
+      "A Python framework for optimising industrial processes with sustainability at the core. It documents life cycle inventories, assesses environmental impacts and couples physicochemical models with multi-objective optimisation.",
     link: "https://doi.org/10.1016/j.compchemeng.2021.107624",
-    image: "eco2des-dark.png",
-    imageLight: "eco2des-light.png",
-    technologies: [techs.PYTHON],
+    illustration: Eco2des,
+    technologies: ["python"],
   },
 ];
 
@@ -119,69 +54,55 @@ const visibleProjects = projects.slice(0, 4);
 const hiddenProjects = projects.slice(4);
 ---
 
-<section id="projects" data-section="projects" class="w-full">
-  <SectionTitle><Code class="size-7" />Projects</SectionTitle>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-projects-grid>
-    {visibleProjects.map((project) => <ProjectCard {...project} />)}
-    {
-      hiddenProjects.map((project) => (
-        <div class="project-extra" data-hidden-project>
-          <ProjectCard {...project} />
-        </div>
-      ))
-    }
-  </div>
-  {
-    hiddenProjects.length > 0 && (
-      <div class="mt-6 flex justify-center print:hidden">
-        <button
-          type="button"
-          data-show-more-projects
-          class="group inline-flex items-center gap-2 rounded-full border border-sky-700/20 bg-white/70 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm shadow-sky-900/5 transition-all duration-300 ease-out hover:border-sky-500/50 hover:bg-sky-50 hover:text-sky-700 dark:border-blue-300/30 dark:bg-black/60 dark:text-blue-100/80 dark:hover:border-sky-300 dark:hover:bg-slate-800/80 dark:hover:text-sky-200/90"
-          aria-expanded="false"
-        >
-          <span>Show more projects</span>
-          <span
-            class="text-base leading-none transition-transform duration-300 ease-out group-hover:translate-y-0.5"
-            aria-hidden="true"
-          >
-            +
-          </span>
-        </button>
+<section id="projects" aria-labelledby="projects-title" class="numbered">
+  <SectionTitle id="projects-title">projects</SectionTitle>
+  <div class="border-b border-line">
+    {visibleProjects.map(({ illustration: Illustration, ...project }) => (
+      <ProjectCard {...project}>
+        <Illustration />
+      </ProjectCard>
+    ))}
+    {hiddenProjects.map(({ illustration: Illustration, ...project }) => (
+      <div class="project-extra" data-hidden-project>
+        <ProjectCard {...project}>
+          <Illustration />
+        </ProjectCard>
       </div>
-    )
-  }
+    ))}
+  </div>
+  {hiddenProjects.length > 0 && (
+    <div class="mt-6 flex justify-center print:hidden" data-projects-toggle>
+      <button
+        type="button"
+        data-show-more-projects
+        class="btn"
+        aria-expanded="false"
+      >
+        <span>show more projects</span>
+        <span aria-hidden="true">+</span>
+      </button>
+    </div>
+  )}
 </section>
 
 <script>
-  const attachProjectToggle = () => {
-    const button = document.querySelector("[data-show-more-projects]");
-    const hiddenProjects = document.querySelectorAll("[data-hidden-project]");
+  const button = document.querySelector("[data-show-more-projects]");
+  const hidden = document.querySelectorAll("[data-hidden-project]");
+  const toggle = document.querySelector("[data-projects-toggle]");
 
-    if (!button || hiddenProjects.length === 0) return;
-
-    button.addEventListener(
-      "click",
-      () => {
-        hiddenProjects.forEach((project) => {
-          project.setAttribute("data-revealing", "true");
-          project.getBoundingClientRect();
-          project.setAttribute("data-expanded", "true");
-        });
-        button.setAttribute("aria-expanded", "true");
-        button.parentElement?.classList.add("projects-toggle-hidden");
-      },
-      { once: true },
-    );
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", attachProjectToggle);
-  } else {
-    attachProjectToggle();
-  }
-
-  document.addEventListener("astro:after-swap", attachProjectToggle);
+  button?.addEventListener(
+    "click",
+    () => {
+      hidden.forEach((project) => {
+        project.setAttribute("data-revealing", "true");
+        project.getBoundingClientRect();
+        project.setAttribute("data-expanded", "true");
+      });
+      button.setAttribute("aria-expanded", "true");
+      toggle?.classList.add("projects-toggle-hidden");
+    },
+    { once: true },
+  );
 </script>
 
 <style is:global>
@@ -190,7 +111,7 @@ const hiddenProjects = projects.slice(4);
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transform: translateY(1rem) scale(0.98);
+    transform: translateY(0.75rem);
     transition:
       max-height 500ms ease,
       opacity 350ms ease,
@@ -199,13 +120,13 @@ const hiddenProjects = projects.slice(4);
 
   .project-extra[data-revealing="true"],
   .project-extra[data-expanded="true"] {
-    display: grid;
+    display: block;
   }
 
   .project-extra[data-expanded="true"] {
     max-height: 900px;
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 
   .projects-toggle-hidden {
@@ -214,42 +135,19 @@ const hiddenProjects = projects.slice(4);
     overflow: hidden;
     pointer-events: none;
     opacity: 0;
-    transform: translateY(-0.5rem);
     transition:
       max-height 250ms ease,
       margin-top 250ms ease,
-      opacity 250ms ease,
-      transform 250ms ease;
+      opacity 250ms ease;
   }
 
   @media print {
-    [data-projects-grid] {
-      display: block;
-    }
-
-    #projects article,
-    .project-extra {
-      break-inside: avoid;
-      page-break-inside: avoid;
-    }
-
-    #projects article {
-      margin-bottom: 1rem;
-    }
-
     .project-extra {
       display: block;
       max-height: none;
       overflow: visible;
       opacity: 1;
       transform: none;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .project-extra,
-    .projects-toggle-hidden {
-      transition: none;
     }
   }
 </style>

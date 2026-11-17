@@ -1,5 +1,7 @@
 ---
 import "@fontsource-variable/onest";
+import "@fontsource-variable/jetbrains-mono";
+import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -12,181 +14,41 @@ const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script is:inline>
       (() => {
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
-        const theme = prefersDark ? "dark" : "light";
+        let theme = null;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
         const root = document.documentElement;
-
-        root.classList.toggle("dark", prefersDark);
+        root.classList.toggle("dark", theme === "dark");
         root.dataset.theme = theme;
-        root.style.colorScheme = theme;
       })();
     </script>
   </head>
 
-  <body
-    class="relative bg-slate-50 text-slate-950 selection:bg-sky-300 selection:text-black dark:bg-neutral-950 dark:text-white"
-  >
-    <div
-      data-page-background
-      class="absolute top-0 z-[-2] h-screen w-screen
-	         bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(14,165,233,0.22),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+  <body class="flex min-h-screen flex-col antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:border focus:border-line focus:bg-bg focus:px-4 focus:py-2 focus:font-mono focus:text-sm"
     >
-    </div>
+      Skip to content
+    </a>
     <Header />
     <slot />
     <Footer />
   </body>
 </html>
-
-<style is:global>
-  :root {
-    color-scheme: light;
-    --theme-ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --theme-text-duration: 260ms;
-    --theme-surface-duration: 360ms;
-  }
-
-  :root.dark {
-    color-scheme: dark;
-  }
-
-  html {
-    font-family: "Onest Variable", system-ui, sans-serif;
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-  }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overscroll-behavior: none;
-  }
-
-  .theme-transition body,
-  .theme-transition header > div > div,
-  .theme-transition article,
-  .theme-transition button,
-  .theme-transition footer > div {
-    transition-duration: var(--theme-surface-duration);
-    transition-timing-function: var(--theme-ease);
-  }
-
-  .theme-transition :where(h1, h2, h3, h4, p, a, span, time, li) {
-    transition-duration: var(--theme-text-duration);
-    transition-timing-function: var(--theme-ease);
-  }
-
-  .theme-transition body,
-  .theme-transition header > div > div,
-  .theme-transition article,
-  .theme-transition button,
-  .theme-transition footer > div {
-    transition-property: background-color, border-color, box-shadow, color;
-  }
-
-  .theme-transition :where(h1, h2, h3, h4, p, a, span, time, li) {
-    transition-property: color, border-color;
-  }
-
-  .theme-transition :where(svg, svg *) {
-    transition-property: none;
-  }
-
-  @media print {
-    :root,
-    :root.dark {
-      color-scheme: light;
-    }
-
-    html,
-    body {
-      background: #ffffff !important;
-      color: #0f172a !important;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    [data-page-background] {
-      display: none !important;
-    }
-
-    main {
-      background: #ffffff !important;
-    }
-
-    :where(section, div, article, header, footer) {
-      box-shadow: none !important;
-    }
-
-    :where(h1, h2, h3, h4) {
-      color: #020617 !important;
-    }
-
-    :where(p, li, time) {
-      color: #334155 !important;
-    }
-
-    :where(a) {
-      color: #0369a1 !important;
-      text-decoration: none;
-    }
-
-    :where(
-        [class*="font-bold"],
-        [class*="font-semibold"],
-        [class*="font-medium"]
-      ) {
-      color: #020617 !important;
-    }
-
-    :where([class*="text-sky"], [class*="text-blue"]) {
-      color: #0369a1 !important;
-    }
-
-    :where([class*="border-blue"], [class*="border-sky"]) {
-      border-color: #bae6fd !important;
-    }
-
-    article {
-      background: #ffffff !important;
-      border-color: #bae6fd !important;
-    }
-
-    article:hover {
-      background: #ffffff !important;
-      border-color: #bae6fd !important;
-    }
-
-    :where(.tech-icon) {
-      color: inherit !important;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    .theme-transition body,
-    .theme-transition header > div > div,
-    .theme-transition article,
-    .theme-transition button,
-    .theme-transition footer > div,
-    .theme-transition :where(h1, h2, h3, h4, p, a, span, time, li) {
-      transition-duration: 0ms;
-    }
-  }
-</style>
