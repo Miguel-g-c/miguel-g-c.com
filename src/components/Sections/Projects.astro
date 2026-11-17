@@ -54,7 +54,11 @@ const visibleProjects = projects.slice(0, 4);
 const hiddenProjects = projects.slice(4);
 ---
 
-<section id="projects" aria-labelledby="projects-title" class="numbered">
+<section
+  id="projects"
+  aria-labelledby="projects-title"
+  class="numbered print:break-before-page"
+>
   <SectionTitle id="projects-title">projects</SectionTitle>
   <div class="border-b border-line">
     {visibleProjects.map(({ illustration: Illustration, ...project }) => (
