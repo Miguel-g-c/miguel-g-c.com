@@ -1,58 +1,38 @@
 ---
 import TechStack from "./TechStack.astro";
-interface Tech {
-  name: string;
-  icon: (_props: Record<string, any>) => any;
-}
 
 interface Props {
   title: string;
   description: string;
-  image: string;
-  imageLight?: string;
   link: string;
-  technologies: Tech[];
+  technologies: string[];
 }
 
-const { title, description, image, imageLight, link, technologies } =
-  Astro.props;
-const lightImage = imageLight ?? image;
+const { title, description, link, technologies } = Astro.props;
 ---
 
-<article
-  class="group flex flex-col items-start rounded-lg border border-sky-700/15 bg-white/70 shadow-sm shadow-sky-900/5 transition duration-300 ease-in-out hover:border-sky-500/60 hover:bg-sky-50/80 print:break-inside-avoid dark:border-blue-300/30 dark:bg-gray-900/40 dark:shadow-none dark:hover:border-sky-300 dark:hover:bg-gray-700/40"
+<a
+  href={link}
+  target="_blank"
+  rel="noopener"
+  class="group flex flex-wrap gap-x-7 gap-y-5 border-t border-line py-7 text-fg no-underline print:break-inside-avoid"
 >
-  <a href={link} target="_blank">
-    <div class="rounded-t-lg block overflow-hidden print:hidden">
-      <figure class="relative h-52 w-auto overflow-hidden md:h-40">
-        <img
-          src={image}
-          class="absolute inset-0 h-full w-full object-cover opacity-0 transition duration-500 ease-in-out group-hover:scale-110 dark:opacity-100"
-          alt={title}
-          decoding="async"
-          loading="lazy"
-        />
-        <img
-          src={lightImage}
-          class="absolute inset-0 h-full w-full object-cover opacity-100 transition duration-500 ease-in-out group-hover:scale-110 dark:opacity-0"
-          alt={title}
-          decoding="async"
-          loading="lazy"
-        />
-      </figure>
-    </div>
-    <div class="relative p-5">
-      <h3
-        class="text-xl font-semibold text-slate-950/90 transition duration-300 ease-in-out group-hover:text-sky-700 dark:text-white/90 dark:group-hover:text-sky-300/80"
-      >
+  <div class="flex h-[70px] w-28 shrink-0 items-center justify-center rounded-[10px] border border-line bg-bg transition-[color,border-color,background-color] duration-200 group-hover:border-accent group-hover:bg-accent-soft group-hover:text-accent print:hidden">
+    <slot />
+  </div>
+  <div class="min-w-0 flex-[1_1_360px]">
+    <div class="flex items-baseline justify-between gap-4">
+      <h3 class="text-lg font-semibold transition-colors duration-200 group-hover:text-accent">
         {title}
       </h3>
-      <p
-        class="mt-5 text-sm text-slate-600 duration-300 ease-in-out group-hover:text-slate-800 dark:text-gray-300 dark:group-hover:text-white/90"
+      <span
+        aria-hidden="true"
+        class="font-mono text-sm text-faint transition-[transform,color] duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px] group-hover:text-accent print:hidden"
       >
-        {description}
-      </p>
-      <TechStack size={4} technologies={technologies} />
+        ↗
+      </span>
     </div>
-  </a>
-</article>
+    <p class="mt-1.5 text-[15px] text-muted">{description}</p>
+    <TechStack technologies={technologies} />
+  </div>
+</a>

@@ -1,5 +1,17 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
 <h2
-  class="mb-10 flex items-center gap-x-3 text-2xl font-bold text-slate-950 sm:text-3xl dark:text-white"
+  id={id}
+  class="mb-6 flex gap-3 font-mono text-[13px] font-medium text-muted"
 >
-  <slot />
+  <span class="section-num inline-block text-accent" aria-hidden="true"></span>
+  <span>
+    <slot />
+  </span>
 </h2>

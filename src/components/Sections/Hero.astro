@@ -4,7 +4,6 @@ import GitHub from "../Icons/GitHub.astro";
 import LinkedIn from "../Icons/LinkedIn.astro";
 import Mail from "../Icons/Mail.astro";
 import KeyWord from "../KeyWord.astro";
-import StatusBadge from "../StatusBadge.astro";
 
 const currentYear = new Date().getFullYear();
 const yearsOfExperience = currentYear - 2016;
@@ -14,70 +13,56 @@ const linkedInUrl =
 const email = "miguel.g.c.505@gmail.com";
 ---
 
-<section id="about" data-section="about">
-  <div
-    class="flex flex-col gap-3 items-center mx-auto mt-20 lg:mt-32 print:mt-12"
-  >
-    <Avatar />
-    <nav class="flex flex-row gap-2 print:hidden">
-      <a href={githubUrl} target="_blank" aria-label="Visit my GitHub profile">
-        <GitHub
-          class="social-icon size-8 transition-colors duration-[260ms] ease-out hover:text-sky-600 dark:hover:text-sky-300"
-        />
+<section
+  id="top"
+  aria-labelledby="hero-title"
+  class="flex flex-wrap items-start gap-x-12 gap-y-8 pt-16 pb-4 lg:pt-24 print:pt-6 print:pb-0"
+>
+  <Avatar />
+  <div class="min-w-0 flex-[1_1_420px]">
+    <p class="mb-5 flex items-center gap-2.5 font-mono text-[13px] text-muted print:hidden">
+      <span
+        class="status-dot inline-block size-2 rounded-full bg-accent"
+        aria-hidden="true"
+      ></span>
+      <span>open for consulting</span>
+    </p>
+    <h1
+      id="hero-title"
+      class="text-5xl leading-[1.02] font-bold tracking-[-0.03em] sm:text-[56px] print:text-4xl"
+    >
+      Hey, I'm Miguel.
+    </h1>
+    <p class="mt-4 font-mono text-sm text-accent">
+      sustainability × backend × agents
+    </p>
+    <p class="mt-6 max-w-[560px] text-lg text-muted">
+      Engineer with over {yearsOfExperience} years of experience and a PhD in
+      Industrial Technologies. I build <KeyWord>calculation engines</KeyWord>,{" "}
+      <KeyWord>life cycle assessment</KeyWord> tooling and{" "}
+      <KeyWord>agentic systems</KeyWord>, so that carbon numbers are accurate,
+      explainable and useful.
+    </p>
+    <div class="mt-7 flex flex-wrap gap-2.5 print:hidden">
+      <a class="icon-btn" href={githubUrl} aria-label="GitHub" title="GitHub">
+        <GitHub class="size-[18px]" />
       </a>
       <a
+        class="icon-btn"
         href={linkedInUrl}
-        target="_blank"
-        aria-label="Connect with me on LinkedIn"
+        aria-label="LinkedIn"
+        title="LinkedIn"
       >
-        <LinkedIn
-          class="social-icon size-8 transition-colors duration-[260ms] ease-out hover:text-sky-600 dark:hover:text-sky-300"
-        />
+        <LinkedIn class="size-[18px]" />
       </a>
-      <a href={`mailto:${email}`} target="_blank" aria-label="Email me">
-        <Mail
-          class="social-icon size-8 transition-colors duration-[260ms] ease-out hover:text-sky-600 dark:hover:text-sky-300"
-        />
+      <a
+        class="icon-btn"
+        href={`mailto:${email}`}
+        aria-label="Email"
+        title="Email"
+      >
+        <Mail class="size-[18px]" />
       </a>
-    </nav>
-    <div class="flex flex-col gap-4 mt-12 mb-2 max-w-[75ch]">
-      <div class="flex flex-row gap-4">
-        <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl">
-          Hey, I'm Miguel
-        </h1>
-        <StatusBadge>Open for consulting</StatusBadge>
-      </div>
-
-      <div class="space-y-2">
-        <h2 class="text-lg text-slate-700 sm:text-xl dark:text-gray-200">
-          <KeyWord>Engineer</KeyWord> with over {yearsOfExperience} years of experience.
-          <KeyWord>PhD</KeyWord> in Industrial Technologies, specializing in <KeyWord
-          >
-            life cycle assessment
-          </KeyWord>, <KeyWord>calculation engines</KeyWord>
-          and <KeyWord>agentic AI systems</KeyWord>.
-          <span class="text-lg text-sky-700 sm:text-xl dark:text-sky-200">
-            Building software for a more sustainable future.
-          </span>
-        </h2>
-      </div>
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes highlight {
-    0%,
-    100% {
-      stroke: currentColor;
-    }
-    20%,
-    80% {
-      stroke: rgb(125 211 252);
-    }
-  }
-
-  .highlight-icon {
-    animation: highlight 500ms ease-in-out;
-  }
-</style>

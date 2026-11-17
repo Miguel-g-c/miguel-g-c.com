@@ -1,36 +1,35 @@
 # miguel-g-c portfolio
 
-This website showcases my work as a Sustainability and Backend Engineer specializing in Life Cycle Assessment (LCA) and carbon accounting calculation engines and data pipelines. Built with Astro and styled using Tailwind CSS, the site highlights my projects, skills, and expertise.
+Personal site of Miguel García Casas, sustainability and backend engineer: calculation engines, life cycle assessment tooling and agentic systems for carbon accounting. Built with Astro and Tailwind CSS, deployed to GitHub Pages.
 
-## 🚀 Project Structure
+## Design notes
 
-The project is structured as follows:
+- One page, three sections on screen (experience, projects, contact). Education and a plain contact list are print-only and appear when you use the PDF button, which calls the browser's print dialog.
+- Theme tokens live in `src/styles/global.css` as CSS variables and are exposed to Tailwind through `@theme inline`, so the same utilities serve light and dark. The toggle persists the choice in `localStorage`; without a saved choice the site follows the system preference.
+- Project illustrations are inline SVG components in `src/components/Illustrations/`. They draw with `currentColor` and the `--accent` variable, so they follow the theme and the hover state.
+- Section numbers come from a CSS counter, so print-only sections are numbered correctly in the PDF.
+
+## Project structure
 
 ```text
 /
-├── public/
-│   └── # Static assets like images
+├── public/            # favicon, avatar
 ├── src/
-│   ├── components/
-│   │   └── # Web components
-│   ├── layouts/
-│   │   └── # Layout templates
-│   └── pages/
-│       └── # Page files, each representing a route
+│   ├── components/    # UI pieces, Sections/ for page blocks, Illustrations/ for project art
+│   ├── layouts/       # page shell, fonts, theme bootstrap
+│   ├── pages/         # routes
+│   └── styles/        # global.css: Tailwind, tokens, component classes
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory to create routes. Components and layouts are organized in their respective directories.
+## Commands
 
-## 🧞 Commands
+Requires Node 22.23 or newer (the deploy workflow uses Node 24).
 
-Use these commands to manage the project:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Command           | Action                                      |
+| :---------------- | :------------------------------------------ |
+| `npm install`     | Install dependencies                        |
+| `npm run dev`     | Start the dev server at `localhost:4321`    |
+| `npm run build`   | Build the production site to `./dist/`      |
+| `npm run preview` | Preview the build locally before deploying  |
+| `npm run format`  | Format the sources with Prettier            |
